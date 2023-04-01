@@ -41,7 +41,17 @@ class libro{
     document.write(`<br>El libro ${this._titulo} con ISBN ${this._isbn} creado por el autor ${this._autor} tiene paginas ${this._cantPaginas}`)
     }
 }
+const maspag=(a,b)=>{
+    if(a>b){
+    document.write(`<br>El primer libro  tiene ${a-b} paginas mas que el segundo`);
+    }else{
+        document.write(`<br>El segundo libro  tiene ${b-a} paginas mas que el primero`);
+    }
+    }
 const harryPotter = new libro (12345,"Harry Potter","J.K Rowlling",5000);
 harryPotter.mostraLibro();
 const DonQuijote = new libro (15489,"DonQuijote de la mancha","Nose",800);
 DonQuijote.mostraLibro();
+maspag(harryPotter._cantPaginas,DonQuijote._cantPaginas);
+
+

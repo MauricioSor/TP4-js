@@ -1,12 +1,13 @@
 class persona {
-    constructor(nombre, edad, dni, sexo, peso, altura, año) {
+    constructor(nombre, edad, sexo, peso, altura, año,dni) {
         this._nombre = nombre;
         this._edad = edad;
-        this._dni = dni;
         this._sexo = sexo;
         this._peso = peso;
         this._altura = altura;
         this._año = año;
+        this._dni = dni || this.generarDNI();
+
     }
     set nombre(nuevoNombre) {
         if (nuevoNombre != null) {
@@ -23,16 +24,6 @@ class persona {
     }
     get edad() {
         return this._edad;
-    }
-    set dni(nuevoDni) {
-        if (nuevoDni >= 10000000 && nuevoDni <= 99999999) {
-            return this._dni = nuevoDni;
-        }else if(nuevoDni== null){
-            this.generaDNI;
-        }
-    }
-    get dni() {
-        return this._dni;
     }
     set sexo(nuevoSexo) {
         if (nuevoSexo == `H` || nuevoSexo == `M`) {
@@ -66,6 +57,15 @@ class persona {
     get año() {
         return this._año;
     }
+    set dni(nuevoDni) {
+        if (nuevoDni !== undefined) {
+            this._dni = nuevoDni;
+        }
+        
+    }
+    get dni() {
+        return this._dni;
+    }
     mostrarGeneracion() {
         if (this.año >= 1994 && this.año <= 2010) {
             document.write("<br>Pertenece a la generacion: Z");
@@ -86,21 +86,29 @@ class persona {
     }
     esMayorDeEdad() {
         if (this.edad >= 18) {
-            document.write("Es mayor de edad");
+            document.write(`<br> ${this.nombre} Es mayor de edad`);
         } else {
-            document.write("No es mayor de edad");
+            document.write(`<br> ${this.nombre} No es mayor de edad`);
         }
     }
     mostrarDatos() {
-        for (let clave in persona) {
-            document.write(persona[clave]);
+        for (let clave in this ) {
+            if (typeof this[clave] !== 'function') {
+                document.write("<br>"+clave + ': ' + this[clave] + '<br>');
+            }        
         }
     }
-    generaDNI() {
-        let dni = Math.random() * (99999999 - 10000000) + 10000000;
-    }
+    generarDNI() {
+    let dni = Math.floor(Math.random() * (99999999 - 10000000) + 10000000);
+    return dni;
 }
-const carlos = new persona("carlos", 25,carlos.generaDNI, "H", 88, 170,2006);
+}
+const carlos = new persona("Carlos", 25, "H", 88, 170,2006,2746782);
 carlos.esMayorDeEdad();
 carlos.mostrarGeneracion();
-console.log(carlos.dni);
+carlos.mostrarDatos();
+const mariana = new persona("Mariana", 27,"M",62.5,160,1980);
+mariana.esMayorDeEdad();
+mariana.mostrarGeneracion();
+mariana.mostrarDatos();
+
