@@ -90,7 +90,7 @@ function menu(Animal){
     }
     }
 const jerry = new Animal("Jerry",3);
-const tom = new Gato("Tom",6,"mestizo")
+const tom = new Gato("Tom",6,"mestizo");
 const spyke = new Perro("Spyke",2,"Dogo");
 let x= prompt("Que tipo de animal es? Spyke , Tom o Jerry?");
 menu(tipoAnimal(x));
